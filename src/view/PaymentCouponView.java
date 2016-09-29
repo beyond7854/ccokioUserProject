@@ -16,10 +16,11 @@ public class PaymentCouponView {
 
 	}
 
-	public void couponUseView(ArrayList<Cart> carts, int couponHonorablyAmount) { //쿠폰 사용한다고했을때 리스트나오기
+	public void couponUseView(ArrayList<Cart> carts, int couponHonorablyAmount, String userClass, double totalPrice) { //쿠폰 사용한다고했을때 리스트나오기
 
-		int sum = 0;
 		System.out.println("\n   [*]  쿠  폰   사   용       가   능  목    록[*]\n");
+		System.out.println("할인율 실버 : 10% , 골드 : 15%, 플래티넘 : 20%");
+		System.out.println("현재 나의 등급 : " + userClass);
 		System.out.println("번호   제품이름\t수량\t사용된쿠폰개수\t가격\t합계금액");
 
 		if (carts.size() == 0) {
@@ -32,13 +33,11 @@ public class PaymentCouponView {
 			System.out.print(carts.get(i).getOrderAmount() + "\t");
 			System.out.print(carts.get(i).getCouponuseAmount() + "\t\t");
 			System.out.print(carts.get(i).getProductPrice() + "\t");
-			System.out.println((carts.get(i).getOrderAmount()-carts.get(i).getCouponuseAmount()) * carts.get(i).getProductPrice());
+			System.out.println(carts.get(i).getProductPriceSum());
 			
-
-			sum = sum + ((carts.get(i).getOrderAmount()-carts.get(i).getCouponuseAmount()) * carts.get(i).getProductPrice());
-
 		}
-		System.out.println("[*]  총      금    액      [*]: " + sum);
+		
+		System.out.println("[*]  할인 된    금    액      [*]: " + totalPrice);
 		System.out.println("[*]  잔 여   쿠  폰   수 [*]: "+ couponHonorablyAmount/10 +"\n");
 		
 		while(true) {
